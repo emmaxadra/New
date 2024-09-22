@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome to alx resturants</title>
+<link rel="stylesheet" href={{url_for('static', filename='css/cart.css')}} />
+<link rel="stylesheet" href={{url_for('static', filename='css/topStyle.css') }} />
+</head>
+</head>
+<body>
+<div id="title">
+
+	{% if not loggedIn %}
+	<div id="signInButton">
+		<a class="link" href="/loginForm">Sign In</a>
+	</div>
+	{% else %}
+	<div class="dropdown">
+		<button class="dropbtn">Hello, <br>{{firstName}}</button>
+		<div class="dropdown-content">
+			<a href="/account/orders">Your orders</a>
+			<a href="/account/profile">Your profile</a>
+			<hr>
+			<a href="/logout">Sign Out</a>
+		</div>
+	</div>
+	{% endif %}
+	<section id="hero" style="background-image: url('pexels-photo-14773005.jpeg');">
+    <div class="hero-content">
+        
+	    <h1> <center>Welcome to ALX FOODS MENU.</center></h1>
+	    <p><center>Indulge in the most delightful and mouthwatering dishes.</center></p>
+    </div>
+  </section>
+</div>
+<div class="display">
+	<div class="displayCategory">
+		<h2>welcome to alx resturant </h2>
+		<ul>
+			{% for row in categoryData %}
+			<li><a href="/displayCategory?categoryId={{row[0]}}">{{row[1]}}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div>
+		<h2>Items</h2>
+		{% for data in itemData%}
+		<table>
+			<tr id="productName">
+				{% for row in data %}
+				<td>
+					{{row[1]}}
+				</td>
+				{% endfor %}
+			</tr>
+			<tr id="productImage">
+				{% for row in data %}
+				<td>
+					<a href="/productDescription?productId={{row[0]}}">
+						<img src={{ url_for('static', filename='uploads/' + row[4]) }} id="itemImage" />
+					</a>
+				</td>
+				{% endfor %}
+			</tr>
+			<tr id="productPrice">
+				{% for row in data %}
+				<td>
+					${{row[2]}}
+				</td>
+				{% endfor %}
+			</tr>
+		</table>
+		{% endfor %}
+	</div>
+</div>
+
+</div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-content">
+      <h2>Contact Us</h2>
+      <form action="submit_form.php" method="post">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p> 2024 ALX FOOD MENU. All rights reserved.</p>
+  </footer>
+  	
+</body>
+</html>
