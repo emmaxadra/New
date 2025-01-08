@@ -1,30 +1,31 @@
-<html>
-<head>
-<title>Registration</title>
-<script type="text/javascript" src="{{ url_for('static', filename = 'js/validateForm.js') }}">
-</script>
-</head>
-<body>
-<form action="/register" method="POST" onsubmit="return validate()">
-    <p>Email: <input type="email" name="email"></p>
+{% extends 'base.html' %}
 
-    <P>Password: <input type="password" name="password" id="password" required></p>
-
-    <p>Confirm Password: <input type="password" name="cpassword" id="cpassword"></p>
-
-    <p>First Name: <input type="text" name="firstName"></p>
-    <p>Last Name: <input type="text" name="lastName"></p>
-    <p>Address Line 1: <input type="text" name="address1"></p>
-    <p>Address Line 2: <input type="text" name="address2"></p>
-    <p>Zipcode: <input type="text" name="zipcode"></p>
-    <p>City: <input type="text" name="city"></p>
-    <p>State: <input type="text" name="state"></p>
-    <p>Country: <input type="text" name="country"></p>
-    <p>Phone Number: <input type="text" name="phone"></p>
-
-    <p><input type="submit" value="Register"></p>
-
-    <a href="/loginForm">Login here</a>
-</form>
-</body>
-</html>
+{% block content %}
+    <h1>{% block title %} create an account {% endblock %}</h1>
+    <form method= "POST">
+            <label for="name"></label>
+            <input type="text" name="name"
+                   placeholder="full name">
+            </input>
+        <br>
+            <label for="country"></label>
+            <input type="text" name="country"
+                   placeholder="country">
+            </input>
+        <br>
+            <label for="number"></label>
+            <input type="number" name="number"
+                   placeholder="phone number">
+            </input>
+        <br>
+        <label for="mail"></label>                <input type="mail" name="mail"                       placeholder="mail">
+	</input>
+	<br>
+	<label for="username"></label>                <input type="username" name="username"                       placeholder="username">                </input>
+	<br>
+	<label for="password"></label>                <input type="password" name="password"                       placeholder="password">                </input>
+	<br>
+	<input type="submit" placeholder="sumbit">
+	<a href="http://127.0.0.1:5000/login/"></a>
+    </form>
+{% endblock %}
