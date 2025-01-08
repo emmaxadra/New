@@ -13,7 +13,7 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-@app.route('/')
+@app.route('/index')
 def index():
     conn = get_db_connection()
     posts = conn.execute('SELECT * FROM posts').fetchall()
@@ -86,7 +86,7 @@ def delete(id):
     return redirect(url_for('index'))
 
 
-@app.route('/login/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     # Output a message if something goes wrong...
     msg = ''
@@ -110,12 +110,12 @@ def login():
             session['mail'] = users[1]
 
             # Redirect to home page
-            return redirect(url_for('/'))
+            return redirect(url_for('index'))
         else:
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect email/password!'
     # Show the login form with message (if any)
-    return render_template('login.html', msg=msg)
+    return render_template('login.html')
 
 @app.route('/register/',methods=('GET','POST'))
 #for new users
